@@ -1,0 +1,16 @@
+<%= link_to "Back to properties", properties_path, class: "float-right" %>
+<h2><%= @property.description %></h2>
+<b>Established On:</b> <%= @property.established_on || "Not Available" %><br/>
+<b>Available For:</b> <%= @property.available_for.titleize %><br />
+<b>Address:</b> <%= @property.address.building +  ", " %><%= @property.address.street +  ", " %>
+<%= "#{@property.address.landmark}, " if @property.address.landmark.present?  %>
+<%= @property.address.city.titleize +  ", " %>
+<%= @property.address.state.titleize +  ", " %>
+<%= @property.address.country.titleize +  ", " %>
+<%= @property.address.zip %><br />
+<% if @property.pictures.any? %>
+<b>Images:</b><br />
+    <% @property.pictures.each do |pic| %>
+      <%= image_tag pic.image.url(:medium) %>
+    <% end %>
+  <% end %>

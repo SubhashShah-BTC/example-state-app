@@ -1,16 +1,19 @@
 class PropertiesController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   load_resource :property
   load_resource :address, through: :property
+
+  def index
+    @countries = Address.pluck(:country).uniq
+  end
 
   def new
     @property.build_address
   end
 
   def create
-    binding.pry
     @property = current_user.properties.build(property_params)
     if @property.save
       redirect_to properties_path, flash: { success: "Property details saved successfully." }
@@ -26,6 +29,9 @@ class PropertiesController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def show
   end
 
   private

@@ -1,5 +1,9 @@
 <% properties.each do |p| %>
   <div class="property-info">
-    <%= link_to p.description, edit_property_path(p) %>
+    <% if can? :update, p %>
+      <%= link_to p.description, edit_property_path(p) %>
+    <% else %>
+      <%= link_to p.description, property_path(p) %>
+    <% end %>
   </div>
 <% end %>
