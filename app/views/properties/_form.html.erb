@@ -1,0 +1,22 @@
+<%= form_for property, url: {action: action}, html: { multipart: true } do |f| %>
+  <%= render partial: "address_fields", locals: {f: f, property: property} %>
+  <div class="property-row">
+    <label>Description<span class="required">*</span>: </label>
+    <%= f.text_field :description %>
+  </div>
+  <div class="property-row">
+    <label>Established On: </label>
+    <%= f.date_select :established_on, { include_blank: true } %>
+  </div>
+  <div class="property-row">
+    <label>Available for<span class="required">*</span>: </label>
+    <% Property.available_fors.each do |key, value| %>
+      <%= f.radio_button :available_for, key %><%= key.titleize %>
+    <% end %>
+  </div>
+  <%= render partial: "pictures", locals: {f: f, property: property} %>
+  <div class="property-row">
+    <%= f.submit "Save Property" %>
+    <%= link_to "Cancel", properties_path %>
+  </div>
+<% end %>

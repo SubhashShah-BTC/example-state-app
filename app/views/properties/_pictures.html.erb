@@ -1,0 +1,9 @@
+<div class="property-row">
+  <label>Pictures: </label>
+  <%= file_field_tag("property_pictures_image", multiple: true, name: "property[pictures_attributes][][image]") %>
+  <% if property.pictures.any? %>
+    <% property.pictures.each do |pic| %>
+      <%= image_tag pic.image.url(:thumb) %>
+    <% end %>
+  <% end %>
+</div>

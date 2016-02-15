@@ -1,0 +1,30 @@
+<%= f.fields_for :address, property.address do |faddr| %>
+  <div class="property-row">
+    <label>Building<span class="required">*</span>: </label>
+    <%= faddr.text_field :building %>
+  </div>
+  <div class="property-row">
+    <label>Street<span class="required">*</span>: </label>
+    <%= faddr.text_field :street %>
+  </div>
+  <div class="property-row">
+    <label>Landmark: </label>
+    <%= faddr.text_field :landmark %>
+  </div>
+  <div class="property-row">
+    <label>City<span class="required">*</span>: </label>
+    <%= faddr.text_field :city %>
+  </div>
+  <div class="property-row">
+    <label>State<span class="required">*</span>: </label>
+    <%= faddr.text_field :state %>
+  </div>
+  <div class="property-row">
+    <label>Country<span class="required">*</span>: </label>
+    <%= faddr.text_field :country %>
+  </div>
+  <div class="property-row">
+    <label>Zip Code<span class="required">*</span>: </label>
+    <%= faddr.text_field :zip %>
+  </div>
+<% end %>

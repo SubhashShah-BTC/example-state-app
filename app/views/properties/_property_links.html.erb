@@ -1,0 +1,5 @@
+<div class="float-right">
+  <% if can? :create, Property %>
+    <%= link_to "Add New Property", new_property_path %>
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+<% properties.each do |p| %>
+  <div class="property-info">
+    <%= link_to p.description, edit_property_path(p) %>
+  </div>
+<% end %>
