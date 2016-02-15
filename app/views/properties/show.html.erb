@@ -4,9 +4,16 @@
 
 
 <%= link_to "Back to properties", properties_path, class: "float-right" %>
+<% if @property.available? && can?(:purchase, @property) %>
+  <%= link_to "Purchase", purchase_property_path(@property), method: :put %>
+<% end %>
 <h2><%= @property.description %></h2>
-<b>Established On:</b> <%= @property.established_on || "Not Available" %><br/>
-<b>Available For:</b> <%= @property.available_for.titleize %><br />
+<b>Established On:</b> <%= @property.established_on || "Not provided" %><br/>
+<% if @property.available? %>
+  <b>Available For:</b> <%= @property.available_for.titleize %><br />
+<% else %>
+  <b>Not available since:</b> <%= @property.sold_or_rented_on %><br />
+<% end %>
 <b>Address:</b> <%= @property.address.building +  ", " %><%= @property.address.street +  ", " %>
 <%= "#{@property.address.landmark}, " if @property.address.landmark.present?  %>
 <%= @property.address.city.titleize +  ", " %>

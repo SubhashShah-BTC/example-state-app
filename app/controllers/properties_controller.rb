@@ -32,6 +32,17 @@ class PropertiesController < ApplicationController
     render "index"
   end
 
+  def reports
+  end
+
+  def purchase
+    if @property.update_attributes(customer_id: current_user.id, sold_or_rented_on: Date.today, available: false)
+      redirect_to properties_path, flash: {success: "Property updated successfully."}
+    else
+      render "show", flash: {error: @property.errors.full_messages.join("\n")}
+    end
+  end
+
   private
 
     def property_params

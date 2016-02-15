@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215091708) do
+ActiveRecord::Schema.define(version: 20160215125102) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "building",    limit: 255, null: false
@@ -41,12 +41,15 @@ ActiveRecord::Schema.define(version: 20160215091708) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.string   "description",    limit: 255
+    t.string   "description",       limit: 255
     t.date     "established_on"
-    t.integer  "available_for",  limit: 4,   null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "owner_id",       limit: 4,   null: false
+    t.integer  "available_for",     limit: 4,   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "owner_id",          limit: 4,   null: false
+    t.boolean  "available"
+    t.date     "sold_or_rented_on"
+    t.integer  "customer_id",       limit: 4
   end
 
   add_index "properties", ["owner_id"], name: "index_properties_on_owner_id", using: :btree
@@ -67,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160215091708) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "auth_token",             limit: 255, default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
