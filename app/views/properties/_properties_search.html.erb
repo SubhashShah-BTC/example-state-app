@@ -1,0 +1,5 @@
+<%= form_tag search_properties_url, method: :get do %>
+  <%= select_tag "country", options_for_select(@countries) %>
+  <%= submit_tag "Search" %>
+<% end %>
+<br />

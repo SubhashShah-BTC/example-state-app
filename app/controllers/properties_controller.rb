@@ -1,13 +1,9 @@
 class PropertiesController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [:index, :show]
-
+  skip_before_action :authenticate_user!, only: [:index, :show, :search]
+  before_action :load_countries, only: [:index, :search]
   load_resource :property
   load_resource :address, through: :property
-
-  def index
-    @countries = Address.pluck(:country).uniq
-  end
 
   def new
     @property.build_address
@@ -31,13 +27,19 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def show
+  def search
+    @properties = Property.by_country(params[:country])
+    render "index"
   end
 
   private
 
     def property_params
       params.require(:property).permit(:description, :established_on, :available_for, address_attributes: [:building, :street, :landmark, :city, :state, :country, :zip], pictures_attributes: [:image])
+    end
+
+    def load_countries
+      @countries = Address.pluck(:country).uniq
     end
 
 end

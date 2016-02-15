@@ -9,4 +9,6 @@ class Property < ActiveRecord::Base
 
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :pictures, :allow_destroy => true
+
+  scope :by_country, ->(country) { joins(:address).where("addresses.country like ?", "%#{country}%")}
 end
