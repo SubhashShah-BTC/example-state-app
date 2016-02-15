@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Google maps api
+gem 'geocoder'
 gem 'gmaps4rails'
 
 # PDF Generation
@@ -41,6 +42,9 @@ gem 'will_paginate'
 
 # Image upload
 gem 'paperclip'
+
+# Google maps dependency
+gem 'underscore-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

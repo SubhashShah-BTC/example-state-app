@@ -6,6 +6,13 @@ class Address < ActiveRecord::Base
 
   before_save :titleize_attributes
 
+  geocoded_by :street_address
+  after_validation :geocode
+
+  def street_address
+    [street, city, state, country].compact.join(', ')
+  end
+
   private
 
     def titleize_attributes

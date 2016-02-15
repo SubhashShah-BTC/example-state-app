@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214194659) do
+ActiveRecord::Schema.define(version: 20160215091708) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "building",    limit: 255, null: false
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20160214194659) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "property_id", limit: 4
+    t.float    "latitude",    limit: 24
+    t.float    "longitude",   limit: 24
   end
 
   add_index "addresses", ["country"], name: "by_country", using: :btree

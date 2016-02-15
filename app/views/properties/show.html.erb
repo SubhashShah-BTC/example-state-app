@@ -1,3 +1,8 @@
+<script src="http://maps.googleapis.com/maps/api/js?key=####################&sensor=false" type="text/javascript"></script>
+<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+<script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
+
+
 <%= link_to "Back to properties", properties_path, class: "float-right" %>
 <h2><%= @property.description %></h2>
 <b>Established On:</b> <%= @property.established_on || "Not Available" %><br/>
@@ -9,8 +14,17 @@
 <%= @property.address.country.titleize +  ", " %>
 <%= @property.address.zip %><br />
 <% if @property.pictures.any? %>
-<b>Images:</b><br />
-    <% @property.pictures.each do |pic| %>
-      <%= image_tag pic.image.url(:medium) %>
-    <% end %>
+  <b>Images:</b><br />
+  <% @property.pictures.each do |pic| %>
+    <%= image_tag pic.image.url(:medium) %>
   <% end %>
+<% end %><br />
+<b>Map:</b>
+<div style='width: 800px;'>
+  <div id="one_marker" style='width: 800px; height: 400px;'></div>
+</div>
+<script>
+  $(document).ready(function() {
+    buildMap(<%= @property.address.latitude.to_s %>, <%= @property.address.longitude.to_s %>);
+  });
+</script>
