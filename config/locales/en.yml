@@ -23,3 +23,4 @@ en:
   hello: "Hello world"
   new_property_title: "New Property"
   edit_property_title: "Edit Property"
+  no_property_message: "No properties found."

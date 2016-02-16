@@ -4,11 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :name, :mobile_number, :role, presence: true
   validates :mobile_number, uniqueness: true
   validates_inclusion_of :role, :in => %w( admin agent customer guest )
 
   has_many :properties, foreign_key: "owner_id", dependent: :destroy
-  has_many :purchased_properties, foreign_key: "customer_id", dependent: :destroy
+  has_many :purchased_properties, class_name: "Property", foreign_key: "customer_id", dependent: :destroy
 
   enum role: [:admin, :agent, :customer]
 

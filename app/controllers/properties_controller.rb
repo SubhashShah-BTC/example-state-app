@@ -33,6 +33,16 @@ class PropertiesController < ApplicationController
   end
 
   def reports
+    @type = params[:type]
+    reporting_service = ReportingService.new(@type)
+    @properties = reporting_service.find_properties_data
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@properties)
+        send_data pdf.render, filename: "report_#{params[:type]}.pdf", type: "application/pdf"
+      end
+    end
   end
 
   def purchase

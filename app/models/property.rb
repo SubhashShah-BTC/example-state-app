@@ -12,4 +12,6 @@ class Property < ActiveRecord::Base
   accepts_nested_attributes_for :pictures, :allow_destroy => true
 
   scope :by_country, ->(country) { joins(:address).where("addresses.country like ?", "%#{country}%")}
+  scope :by_type_and_availability, ->(type, availability) { includes(:address, :owner, :customer).where(available: availability, available_for: Property.available_fors[type]) }
+  scope :sold_in_year, -> (year) { where( "YEAR(sold_or_rented_on) = ?", year ) }
 end

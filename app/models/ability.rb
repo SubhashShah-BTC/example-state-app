@@ -9,15 +9,18 @@ class Ability
     elsif user.agent?
       can :read, Property
       can :manage, Property, owner_id: user.id
+      cannot :reports, Property
       can :manage, Address, property: { id: user.property_ids }
       can :purchase, Property, id: User.where.not(id: user.id).map(&:property_ids).flatten
     elsif user.customer?
       can :read, Property
       can :manage, Property, owner_id: user.id
+      cannot :reports, Property
       can :manage, Address, property: { id: user.property_ids }
       can :purchase, Property, id: User.where.not(id: user.id).map(&:property_ids).flatten
     else
       can :read, Property
+      cannot :reports, Property
     end
   end
 end

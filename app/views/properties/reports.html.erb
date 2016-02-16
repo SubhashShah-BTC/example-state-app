@@ -1,1 +1,7 @@
-<%= link_to "Export to PDF", "#" %>
+<% if @properties.any? %>
+  <%= link_to "Export to PDF", property_reports_path(type: @type, format: "pdf") %>
+  <%= render partial: "properties", locals: { properties: @properties } %>
+<% else %>
+  <%= t('no_property_message') %>
+<% end %>
+<%= link_to "Back to properties", properties_path, class: "float-right" %>

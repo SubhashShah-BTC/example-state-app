@@ -30,6 +30,7 @@ gem 'gmaps4rails'
 
 # PDF Generation
 gem 'prawn'
+gem 'prawn-table'
 
 # User authentication
 gem 'devise'

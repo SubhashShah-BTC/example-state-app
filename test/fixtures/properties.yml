@@ -3,7 +3,13 @@
 one:
   description: MyString
   established_on: 2016-02-14
+  owner: customer
+  available_for: rent
+  available: true
 
 two:
   description: MyString
   established_on: 2016-02-14
+  owner: agent
+  available_for: rent
+  available: true

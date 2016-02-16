@@ -1,7 +1,7 @@
   <% if can? :reports, Property %>
     <h2>Reports</h2>
-    <%= link_to "Properties available for rent", property_reports_path() %><br />
-    <%= link_to "Properties available for sale", property_reports_path %><br />
-    <%= link_to "Properties sold this year", property_reports_path %><br />
-    <%= link_to "Properties rented this year", property_reports_path %><br />
+    <%= link_to "Properties available for rent", property_reports_path(type: "rent") %><br />
+    <%= link_to "Properties available for sale", property_reports_path(type: "sale") %><br />
+    <%= link_to "Properties sold this year", property_reports_path(type: "sold") %><br />
+    <%= link_to "Properties rented this year", property_reports_path(type: "rented") %><br />
   <% end %>
